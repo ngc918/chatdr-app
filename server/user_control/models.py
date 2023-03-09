@@ -40,6 +40,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
     
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        CustomUser, related_name="user_profile", on_delete=models.CASCADE
+    )
+    
 class Jwt(models.Model):
     user = models.OneToOneField(
         CustomUser, related_name="login_user", on_delete=models.CASCADE)
